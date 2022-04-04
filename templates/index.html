@@ -14,7 +14,7 @@
 
 {% block content %}
     <div class="main">
-        <h1>Ana Sayfa</h1>
+        <h1>Home Page</h1>
         {% if user.is_authenticated %}
             <div class="jumbotron">
                 <div class="logo">
@@ -25,7 +25,7 @@
                 <a href="{% url 'users:logout' %}"><button class="btn btn-primary">Logout</button></a>
             </div>
         {% else %}
-            <p>Resimleri görebilmek için giriş yapmalısınız</p>
+            <p>Login first to see photos</p>
             <div class="jumbotron">
                 <a href="{% url 'register' %}"><button class="btn btn-primary btn-lg">Register</button></a>
                 <a href="{% url 'users:login' %}"><button class="btn btn-primary btn-lg">Login</button></a>
