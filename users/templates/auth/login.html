@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h1>You have already signed in</h1>
+        {% else %}
+            <h2>Login Page</h2>
+            <form action="{% url 'users:login' %}" method="POST">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" name="username"><br>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" name="password"><br>
+                <br>
+                <input type="submit" class="btn btn-primary" value="Login">
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'photos/photos.html' %}
+
+{% block head %}
+    <style>
+        body {
+            color: white;
+            background: url('https://cdn.wallpapersafari.com/31/50/dNQTbX.jpg');
+        }
+        .main-div {
+            text-align: center;
+            margin: 70px 0;
+        }
+        h1 {
+            margin: 50px 0;
+        }
+    </style>
+{% endblock %}
+
+{% block cards %}
+    <div class="main-div">
+        <h1 class="text-info">Share photo to the world!</h1>
+        <div class="form-div">
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {{ add_photo_form.as_p }}
+                <br><br>
+                <button type="submit" class="btn-lg btn-primary">Share</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
