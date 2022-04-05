@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+# from os import getenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,11 +26,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-8k@@b%$0%ghh#6jf8p9h4(sbpym8w$@n^c44^-rr&3+dqhen(x'
+# SECRET_KEY = getenv("SECRET_KEY") # add this before deploying
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = getenv("IS_DEVELOPMENT", True) # add this before deploying
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # getenv("APP_HOST") # this line was empyt, but we add that before deployment
+]
 
 
 # Application definition
@@ -147,6 +152,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
+
+STATIC_ROOT = BASE_DIR / "staticfiles" # before aws deployment
 
 MEDIA_URL = '/media/'
 

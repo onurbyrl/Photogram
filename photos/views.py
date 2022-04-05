@@ -1,7 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from photos.models import Photo
 from photos.forms import AddPhoto
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 def photos_view(request):
     photos = Photo.objects.all()
@@ -19,12 +21,13 @@ def add_photo(request):
         if add_photo_form.is_valid():
             add_photo_form.save()
             # Get the current instance object to display in the template
-            photo_obj = add_photo_form.instance
+            # photo_obj = add_photo_form.instance
 
-            return render(request, 'photos/photos.html', {
-                'add_photo_form': add_photo_form,
-                'photo_obj': photo_obj
-            })
+            # return render(request, 'photos/photos.html', {
+            #     'add_photo_form': add_photo_form,
+            #     'photo_obj': photo_obj
+            # })
+            return HttpResponseRedirect(reverse('photos:photos'))
     else:
         add_photo_form = AddPhoto()
 
